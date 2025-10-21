@@ -95,21 +95,18 @@ class NewsDialerSim:
             self.DailyProfit.append(daily_profit)
         # print the results
 
-    def save_results(self, filename: str):
+    def save_results(self,file_path:str):
         import pandas as pd
-
         data = {
             "Day": self.Day,
-            "RN for NT": self.RNforNT[: len(self.Day) - 1],
+            "RN for NT": self.RNforNT[: len(self.Day) ],
             "News Type": [nt.name for nt in self.NewsType],
-            "RN for Demand": self.RNforDemand[: len(self.Day) - 1],
+            "RN for Demand": self.RNforDemand[: len(self.Day)],
             "Demand": self.Demand,
             "Revenue from Sales": self.RevenuefromSales,
-            "Cost of NPs": [self.CostofNPs],
             "Lost Profit": self.LostProfit,
             "Scrap Revenue": self.ScrapRevenue,
             "Daily Profit": self.DailyProfit,
         }
-
         df = pd.DataFrame(data)
-        df.to_csv(filename, index=False)
+        df.to_csv(file_path , index=False)
